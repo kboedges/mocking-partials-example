@@ -1,0 +1,4 @@
+export const meatGenerator = fancy => (fancy ? 'turkey' : 'ham')
+export const cheeseGenerator = fancy => (fancy ? 'provolone' : 'cheddar')
+export const sauceGenerator = fancy => (fancy ? 'horseradish' : 'mayo')
+export default () => 'food'
