@@ -22,16 +22,35 @@ jest.mock('./helpers', () => {
   }
 })
 
-test('creates a ham and cheddar sandwich with mayo', async () => {
-  const defaultExportResult = defaultExport()
-  expect(defaultExportResult).toBe('mocked food')
-  expect(defaultExport).toHaveBeenCalled()
+describe('fully mocked', () => {
+  test('creates a ham and cheddar sandwich with mayo', () => {
+    // Note how we don't pass in the boolean, fancy, here
+    const defaultExportResult = defaultExport()
+    expect(defaultExportResult).toBe('mocked food')
+    expect(defaultExport).toHaveBeenCalled()
 
-  expect(meatGenerator()).toBe('ham')
-  expect(cheeseGenerator()).toBe('cheddar')
-  expect(sauceGenerator()).toBe('mayo')
+    expect(meatGenerator()).toBe('ham')
+    expect(cheeseGenerator()).toBe('cheddar')
+    expect(sauceGenerator()).toBe('mayo')
 
-  render(<SandwichMaker sauce="mayo" />)
+    render(<SandwichMaker />)
 
-  screen.getByText('A ham and cheddar sandwich, topped with mayo')
+    screen.getByText('A ham and cheddar sandwich, topped with mayo')
+  })
 })
+
+// describe('fancy sandwich', () => {
+//   test('creates a turkey and provolone sandwich with horseradish', () => {
+//     render(<SandwichMaker fancy={true} />)
+
+//     screen.getByText('A turkey and provolone sandwich, topped with horseradish')
+//   })
+// })
+
+// describe('plain sandwich', () => {
+//   test('creates a ham and cheddar sandwich with mayo', () => {
+//     render(<SandwichMaker fancy={false} />)
+
+//     screen.getByText('A ham and cheddar sandwich, topped with mayo')
+//   })
+// })
